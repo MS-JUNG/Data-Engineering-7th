@@ -1,4 +1,38 @@
 1주차 정리 
+# W1-M3
+
+#####GDP ETL Pipeline Overview
+
+이 프로젝트는 Wikipedia의 국가별 명목 GDP 데이터를 수집하여,
+국가–대륙(Region) 정보를 결합한 뒤 정제된 JSON 파일로 저장하는 ETL 파이프라인입니다.
+
+main()
+ ├─ load_country_region_map()
+ │    └─ country_region_map.json 로드
+ │
+ ├─ Extract
+ │    ├─ extract_gdp_table_html()
+ │    │    ├─ fetch_html()
+ │    │    │    └─ Wikipedia HTML 요청
+ │    │    └─ find_gdp_table_html()
+ │    │         └─ GDP 테이블(table HTML) 탐색
+ │    │
+ │    └─ _pick_latest_imf_column()
+ │         └─ 최신 IMF 연도 컬럼 결정
+ │
+ ├─ Transform
+ │    └─ transform_gdp_table()
+ │         ├─ pd.read_html() 로 테이블 로드
+ │         ├─ 국가명 정규화 (normalize_country_name)
+ │         ├─ GDP 값 정제 및 단위 변환
+ │         ├─ 국가 → Region 매핑
+ │         ├─ 결측/매핑 실패 데이터 제거
+ │         └─ 정렬 및 imf_year 컬럼 추가
+ │
+ └─ Load
+      └─ save_json()
+           └─ Countries_by_GDP.json 저장
+
 
 # W1-M1
 #### Q. 이런 데이터셋을 분석해서 얻을 수 있는 경제적 가치는 무엇일까요? 어떤 비즈니스 상황에서 이런 데이터셋을 분석해서 어떤 경제적 가치를 얻을 수 있을까요? 변수들 간의 상관 관계가 높은 조합을 임의로 2개 선택해서 해당 데이터 간의 상관 관계를 그래프로 그리고 어떤 결론을 내릴 수 있는지를 토의하세요.
@@ -36,3 +70,7 @@
 
 #### 시사점 
 과거 차량 데이터 분석을 통해 동일한 연비 조건에서도 무게 절감과 변속기 구성 최적화로 마력 성능을 향상시킬 수 있음을 확인하였다. 이러한 분석은 성능–연비 트레이드오프를 정량화할 뿐만 아니라, 향후 다양한 지표와 최신 데이터로 확장 가능한 설계 전략을 수립할 수 있다.
+
+
+
+
