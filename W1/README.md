@@ -1,37 +1,37 @@
 1주차 정리 
 # W1-M3
 
-#####GDP ETL Pipeline Overview
+#### GDP ETL Pipeline Overview
 
 이 프로젝트는 Wikipedia의 국가별 명목 GDP 데이터를 수집하여,
 국가–대륙(Region) 정보를 결합한 뒤 정제된 JSON 파일로 저장하는 ETL 파이프라인입니다.
 
 main()
  ├─ load_country_region_map()
- │    └─ country_region_map.json 로드
+ │   └─ country_region_map.json 로드
  │
  ├─ Extract
- │    ├─ extract_gdp_table_html()
- │    │    ├─ fetch_html()
- │    │    │    └─ Wikipedia HTML 요청
- │    │    └─ find_gdp_table_html()
- │    │         └─ GDP 테이블(table HTML) 탐색
- │    │
- │    └─ _pick_latest_imf_column()
- │         └─ 최신 IMF 연도 컬럼 결정
+ │   └─ extract_gdp_table_html()
+ │       ├─ fetch_html()
+ │       │   └─ Wikipedia HTML 요청
+ │       ├─ find_gdp_table_html()
+ │       │   └─ GDP 테이블(table HTML) 탐색
+ │       └─ _pick_latest_imf_column()
+ │           └─ 최신 IMF 연도 컬럼 결정
  │
  ├─ Transform
- │    └─ transform_gdp_table()
- │         ├─ pd.read_html() 로 테이블 로드
- │         ├─ 국가명 정규화 (normalize_country_name)
- │         ├─ GDP 값 정제 및 단위 변환
- │         ├─ 국가 → Region 매핑
- │         ├─ 결측/매핑 실패 데이터 제거
- │         └─ 정렬 및 imf_year 컬럼 추가
+ │   └─ transform_gdp_table()
+ │       ├─ pd.read_html() 로 테이블 로드
+ │       ├─ 국가명 정규화 (normalize_country_name)
+ │       ├─ GDP 값 정제 및 단위 변환
+ │       ├─ 국가 → Region 매핑
+ │       ├─ 결측/매핑 실패 데이터 제거
+ │       └─ 정렬 및 imf_year 컬럼 추가
  │
  └─ Load
-      └─ save_json()
-           └─ Countries_by_GDP.json 저장
+     └─ save_json()
+         └─ Countries_by_GDP.json 저장
+
 
 
 # W1-M1
