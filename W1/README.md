@@ -6,6 +6,7 @@
 이 프로젝트는 Wikipedia의 국가별 명목 GDP 데이터를 수집하여,
 국가–대륙(Region) 정보를 결합한 뒤 정제된 JSON 파일로 저장하는 ETL 파이프라인입니다.
 
+```text
 main()
  ├─ load_country_region_map()
  │   └─ country_region_map.json 로드
