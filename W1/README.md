@@ -1,10 +1,14 @@
 1주차 정리 
 # W1-M3
 
-#### GDP ETL Pipeline Overview
+## GDP ETL Pipeline Overview
 
-이 프로젝트는 Wikipedia의 국가별 명목 GDP 데이터를 수집하여,
+etl_project_gdp.py
+
+해당 과제는 Wikipedia의 국가별 명목 GDP 데이터를 수집하여,
 국가–대륙(Region) 정보를 결합한 뒤 정제된 JSON 파일로 저장하는 ETL 파이프라인입니다.
+
+### 1. GDP ETL Pipeline (Wikipedia → JSON)
 
 ```text
 main()
@@ -32,8 +36,37 @@ main()
  └─ Load
      └─ save_json()
          └─ Countries_by_GDP.json 저장
+```
+### 2. Database Load & Reporting (JSON → SQLite → Report)
 
+etl_project_gdp_with_sql.py
 
+```text
+main()
+ ├─ load_from_json()
+ │   ├─ Countries_by_GDP.json 로드
+ │   ├─ 필수 컬럼 검증
+ │   │   └─ country, region, gdp_1b_usd, imf_year
+ │   ├─ 타입 변환 및 결측 제거
+ │   └─ GDP 내림차순 정렬
+ │
+ ├─ save_to_db()
+ │   ├─ SQLite DB 연결 (World_Economies.db)
+ │   ├─ ensure_db_schema()
+ │   │   └─ Countries_by_GDP 테이블 생성 (없으면)
+ │   ├─ 기존 데이터 삭제 (DELETE)
+ │   └─ JSON 기준 데이터 재삽입
+ │
+ ├─ run_reports()
+ │   ├─ print_gdp_over_100b_sql()
+ │   │   └─ GDP ≥ 100B USD 국가 목록 출력
+ │   └─ print_region_top5_avg_sql()
+ │       └─ Region별 Top5 GDP 평균 계산 및 출력
+ │
+ └─ 로그 기록
+     └─ JSON load / DB load / Report start-end
+
+```
 
 # W1-M1
 #### Q. 이런 데이터셋을 분석해서 얻을 수 있는 경제적 가치는 무엇일까요? 어떤 비즈니스 상황에서 이런 데이터셋을 분석해서 어떤 경제적 가치를 얻을 수 있을까요? 변수들 간의 상관 관계가 높은 조합을 임의로 2개 선택해서 해당 데이터 간의 상관 관계를 그래프로 그리고 어떤 결론을 내릴 수 있는지를 토의하세요.
