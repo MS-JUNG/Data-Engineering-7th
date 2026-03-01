@@ -63,5 +63,35 @@
 ### M6. Amazon Product Review using MapReduce
 - Amazon 상품 리뷰 데이터 분석
 - 대규모 리뷰 데이터에 대한 분산 처리 경험
+---
+## Week 4. Introduction to Apache Spark
 
+### M1. Apache Spark Standalone Cluster on Docker
+- Docker 환경에서 Spark Standalone 클러스터 구성
+- Spark Master / Worker 아키텍처 이해
+- 분산 실행 환경 설정 및 테스트
+
+### M2. NYC TLC Trip Record Analysis using Apache Spark
+- NYC 택시 운행 데이터 분석
+- Spark를 활용한 대규모 데이터 처리 및 집계 분석
+- 분산 환경에서의 데이터 처리 성능 비교
+
+### M3. Crawling a Billion Web Pages in 24 Hours
+- 초대규모 웹 크롤링 아키텍처 사례 분석
+- 분산 처리 기반 대용량 데이터 수집 전략 이해
+- 확장성과 병렬 처리 구조 학습
+
+---
+
+## Week 5. How Spark Works Internally: RDD and DAG
+
+### M1. Data Analysis using RDD
+- RDD의 개념 및 동작 원리 이해
+- Transformation과 Action 기반 연산 구조 학습
+- DAG(Directed Acyclic Graph) 실행 흐름 분석
+
+### M2. Data Analysis using DataFrame
+- DataFrame 기반 고수준 데이터 처리 API 활용
+- Spark SQL 및 Catalyst Optimizer 이해
+- 실행 계획(Execution Plan) 분석 및 성능 최적화 실습
 ---
